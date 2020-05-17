@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace OneWay.Api.Controllers
+namespace HitTheRoad.Api.Controllers
 {
     [ApiController]
     [Route("[controller]")]

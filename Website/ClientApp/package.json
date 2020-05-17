@@ -1,8 +1,13 @@
 {
-  "name": "oneway.website",
+  "name": "hittheroad.website",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.27",
+    "@fortawesome/free-brands-svg-icons": "^5.12.1",
+    "@fortawesome/free-regular-svg-icons": "^5.12.1",
+    "@fortawesome/free-solid-svg-icons": "^5.12.1",
+    "@fortawesome/react-fontawesome": "^0.1.9",
     "bootstrap": "^4.1.3",
     "jquery": "^3.4.1",
     "merge": "^1.2.1",
@@ -16,15 +21,21 @@
     "rimraf": "^2.6.2"
   },
   "devDependencies": {
+    "@types/jest": "^25.1.4",
+    "@types/node": "^13.9.1",
+    "@types/react": "^16.9.23",
+    "@types/react-dom": "^16.9.5",
+    "@types/react-router": "^5.1.4",
+    "@types/react-router-dom": "^5.1.3",
+    "@types/react-router-hash-link": "^1.2.1",
+    "@types/reactstrap": "^8.4.2",
+    "@typescript-eslint/eslint-plugin": "^2.24.0",
+    "@typescript-eslint/parser": "^2.24.0",
     "ajv": "^6.9.1",
     "cross-env": "^5.2.0",
-    "typescript": "^3.7.5",
-    "eslint": "^6.8.0",
-    "eslint-config-react-app": "^5.2.0",
     "eslint-plugin-flowtype": "^4.6.0",
-    "eslint-plugin-import": "^2.20.1",
-    "eslint-plugin-jsx-a11y": "^6.2.3",
-    "eslint-plugin-react": "^7.18.3"
+    "node-sass": "^4.13.1",
+    "typescript": "^3.5.2"
   },
   "eslintConfig": {
     "extends": "react-app"

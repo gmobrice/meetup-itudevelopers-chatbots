@@ -1,6 +1,6 @@
 using System;
 
-namespace OneWay.Website
+namespace HitTheRoad.Website
 {
     public class WeatherForecast
     {

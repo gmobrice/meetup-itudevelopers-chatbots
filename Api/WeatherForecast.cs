@@ -1,6 +1,6 @@
 using System;
 
-namespace OneWay.Api
+namespace HitTheRoad.Api
 {
     public class WeatherForecast
     {
