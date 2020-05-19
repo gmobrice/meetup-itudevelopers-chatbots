@@ -3,15 +3,14 @@
 
 body
 {
-    background: url('./images/header-bg02.jpg') no-repeat #000;
+    background: url('./images/header-bg01.jpg') no-repeat;
     background-size: 100%;
     background-attachment: fixed;
-    font-family: 'Roboto';
-}
-
-h1, h2, h3, h4, h5, h6
-{
     font-family: 'Jost';
+
+    @media screen and (max-aspect-ratio:3/2) {
+        background: white;
+    }
 }
 
 .container-fluid.full

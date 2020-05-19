@@ -24,7 +24,7 @@ export class NavMenu extends Component<any, any> {
     return (
       <header>
         <Navbar className="navbar-expand-sm navbar-toggleable-sm navbar-transparent p-2 mb-3">
-            <NavbarBrand className="mx-auto" tag={Link} to="/"><img src="./logo-black.svg" alt="Hit The Road" width="200" /></NavbarBrand>
+            <NavbarBrand className="mx-auto" tag={Link} to="/"><img src="./Images/logo-black.svg" alt="Hit The Road" width="200" /></NavbarBrand>
         </Navbar>
       </header>
     );

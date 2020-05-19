@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Input, InputGroup, InputGroupAddon, InputGroupText, Button, Label, FormGroup, Form, Container } from 'reactstrap';
+import { Input, InputGroup, InputGroupAddon, InputGroupText, Button, Label, FormGroup, Form, Container, Card, CardImg, CardBody, CardTitle, CardText, CardSubtitle, Row, Col } from 'reactstrap';
 import { AutoCompleteInput } from '../AutoCompleteInput/AutoCompleteInput';
 import './SearchTrip.scss';
 
@@ -48,46 +48,74 @@ export class SearchTrip extends Component<ISearchTripProps, ISearchTripState>
     {
         return (
             <Container className="search-trip">
-                    <div className="d-flex flex-wrap align-items-end justify-content-center form">
-                        <div className="d-flex">
-                            <div className="mx-2">
-                                <Label>from</Label>
-                                <AutoCompleteInput name="start-destination" onChange={this.handleInputChange} suggestions={['São Paulo', 'Rio de Janeiro', 'Minas Gerais']} placeholder="your home" />
-                            </div>
-                            <div className="mx-2">
-                                <Label>to</Label>
-                                <AutoCompleteInput name="end-destination"  onChange={this.handleInputChange} suggestions={['São Paulo', 'Rio de Janeiro', 'Minas Gerais']} placeholder="your destination" />
-                            </div>
-                        </div>
-                        <div className="d-flex">
-                            <div className="mx-2">
-                                <Label>starts on</Label>
-                                <div>
-                                    <Input name="start-date" type="date" value={ this.state.startDate } min={ this.state.today } onChange={ this.handleDateChange } />
-                                </div>
-                            </div>
-                            <div className="mx-2">
-                                <Label>ends on</Label>
-                                <div>
-                                    <Input name="end-date" type="date" value={ this.state.endDate } min={ this.state.startDate } onChange={ this.handleDateChange } />
-                                </div>
-                            </div>
-                        </div>
-                        <Button className="mx-2">Search Trips</Button>
-                    </div>
-
-                    <div className="results p-4 mt-4">
+                <Row>
+                    <Col className="mb-2">
+                        <Label>from</Label>
+                        <AutoCompleteInput name="start-destination" onChange={this.handleInputChange} suggestions={['São Paulo 🇧🇷']} placeholder="your home" />
+                    </Col>
+                    <Col className="mb-2">
+                        <Label>to</Label>
+                        <AutoCompleteInput name="end-destination"  onChange={this.handleInputChange} suggestions={['Dublin 🇮🇪', 'London 🏴󠁧󠁢󠁥󠁮󠁧󠁿', 'New York 🇺🇸', 'Stockholm 🇸🇪']} placeholder="your destination" />
+                    </Col>
+                    <Col className="mb-2">
+                        <Label>starts on</Label>
+                        <Input name="start-date" type="date" value={ this.state.startDate } min={ this.state.today } onChange={ this.handleDateChange } />
+                    </Col>
+                    <Col className="mb-2">
+                        <Label>ends on</Label>
                         <div>
-                            <h1>
-                                Results
-                            </h1>
-                            <p>asdasda</p>
-                            <p>asdasda</p>
-                            <p>asdasda</p>
-                            <p>asdasda</p>
-                            <p>asdasda</p>
+                            <Input name="end-date" type="date" value={ this.state.endDate } min={ this.state.startDate } onChange={ this.handleDateChange } />
                         </div>
+                    </Col>
+                    <Col className="d-flex align-items-end mb-2">
+                        <Button className="search">Search Trips</Button>
+                    </Col>
+                </Row>
+
+                <div className="results p-4 mt-4">
+                    <div>
+                        <h1>Results</h1>
+                        <h2><span className="text-secondary">Trips from </span>São Paulo 🇧🇷 <span className="text-secondary">to</span> Stockholm 🇸🇪</h2>
+                        <h4><span className="text-secondary">between</span> 19/05/2020 <span className="text-secondary">and</span> 29/05/2020</h4>
+                        <Row className="mt-4">
+                            <Col md="4">
+                                <Card>
+                                    <CardImg top src="./Images/stockholm-sweden.jpg" />
+                                    <CardBody>
+                                        <CardTitle><h5>Air France AF 1263</h5></CardTitle>
+                                        <CardSubtitle><h6>18 h 30 min</h6></CardSubtitle>
+                                        <CardText>$ 350 + taxes</CardText>
+                                        <Button>Buy tickets</Button>
+                                    </CardBody>
+                                </Card>
+                            </Col>
+
+                            <Col md="4">
+                                <Card>
+                                    <CardImg top src="./Images/stockholm-sweden.jpg" />
+                                    <CardBody>
+                                        <CardTitle><h5>Air France AF 1263</h5></CardTitle>
+                                        <CardSubtitle><h6>18 h 30 min</h6></CardSubtitle>
+                                        <CardText>lorem ipsum dolor sit amet</CardText>
+                                        <Button>Buy tickets</Button>
+                                    </CardBody>
+                                </Card>
+                            </Col>
+
+                            <Col md="4">
+                                <Card>
+                                    <CardImg top src="./Images/stockholm-sweden.jpg" />
+                                    <CardBody>
+                                        <CardTitle><h5>Air France AF 1263</h5></CardTitle>
+                                        <CardSubtitle><h6>18 h 30 min</h6></CardSubtitle>
+                                        <CardText>lorem ipsum dolor sit amet</CardText>
+                                        <Button>Buy tickets</Button>
+                                    </CardBody>
+                                </Card>
+                            </Col>
+                        </Row>
                     </div>
+                </div>
             </Container>
         );
     }
