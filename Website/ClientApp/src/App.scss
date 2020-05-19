@@ -1,15 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Jost&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
+body
+{
+    background: url('./images/header-bg02.jpg') no-repeat #000;
+    background-size: 100%;
+    background-attachment: fixed;
+    font-family: 'Roboto';
+}
+
+h1, h2, h3, h4, h5, h6
+{
+    font-family: 'Jost';
+}
+
 .container-fluid.full
 {
     padding: 0 !important;
-}
-
-.header-bg
-{
-    background: url('./images/header-bg04.jpg') no-repeat center;
-    background-size: 100%;
-    width: 100vw;
-    height: 65vh;
 }

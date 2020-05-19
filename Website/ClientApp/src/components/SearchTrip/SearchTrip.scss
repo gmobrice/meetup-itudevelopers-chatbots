@@ -2,17 +2,23 @@
 
 .search-trip
 {
+    .form
+    {
+        font-family: 'Jost';
+    }
+
     .input-group-text
     {
         background: none;
         border: none;
         width: 80px;
     }
-
     .form-control
     {
         border: none;
         border-radius: 0 !important;
+        font-size: .9em;
+        min-width: 200px;
 
         &:focus
         {
@@ -20,22 +26,31 @@
         }
     }
 
-
     .btn
     {
-        background-color: $primary-color;
+        background-color: $secondary-color;
         border: none;
         border-radius: 0;
 
-        &:hover
+        &:hover, &:focus
         {
+            border: none;
             box-shadow: inset 0 0 200px rgba(255, 255, 255, .1);
+            outline: none !important; 
         }
 
         &:active
         {
-            background-color: $primary-color !important;
+            background-color: $secondary-color !important;
             box-shadow: inset 0 0 200px rgba(0, 0, 0, .2) !important;
+            outline: none;
         }
+    }
+
+    .results
+    {
+        background: rgba(255, 255, 255, .7);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(0, 0, 0, 0.1);
     }
 }
