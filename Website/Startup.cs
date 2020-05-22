@@ -21,6 +21,7 @@ namespace HitTheRoad.Website
         public void ConfigureServices(IServiceCollection services)
         {
 
+            services.AddHttpClient();
             services.AddControllersWithViews();
 
             // In production, the React files will be served from this directory

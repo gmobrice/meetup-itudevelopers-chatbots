@@ -1,23 +1,8 @@
 import React, { Component } from 'react';
 import { Input } from 'reactstrap';
+import { IDestination, IAutoCompleteProps, IAutoCompleteState } from '../../interfaces/Interfaces';
 
 import './AutoCompleteInput.scss';
-
-interface IAutoCompleteProps
-{
-    suggestions: string[],
-    placeholder: string,
-    name: string,
-    onChange: (val: string, name: string) => void
-}
-
-interface IAutoCompleteState
-{
-    activeSuggestion: number,
-    filteredSuggestions: string[],
-    showSuggestions: boolean,
-    inputValue: string
-}
 
 export class AutoCompleteInput extends Component<IAutoCompleteProps, IAutoCompleteState>
 {
