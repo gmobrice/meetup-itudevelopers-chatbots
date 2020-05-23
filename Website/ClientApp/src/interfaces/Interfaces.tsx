@@ -16,12 +16,6 @@ export interface ITrip
     price: number
 }
 
-export interface ISuggestion
-{
-    id: number,
-    name: string
-}
-
 export interface ISearchTripState
 {
     today: string,

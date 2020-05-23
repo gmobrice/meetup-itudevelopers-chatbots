@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Input } from 'reactstrap';
-import { IDestination, IAutoCompleteProps, IAutoCompleteState } from '../../interfaces/Interfaces';
+import { IAutoCompleteProps, IAutoCompleteState } from '../../interfaces/Interfaces';
 
 import './AutoCompleteInput.scss';
 

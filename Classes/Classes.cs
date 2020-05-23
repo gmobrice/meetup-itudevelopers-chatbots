@@ -9,6 +9,7 @@ namespace HitTheRoad.Classes
         public string Flag { get; set; }
         public double Latitude { get; set; }
         public double Longitude { get; set; }
+        public string Photo { get; set; }
     }
 
     public class Trip
