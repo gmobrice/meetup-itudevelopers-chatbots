@@ -71,13 +71,14 @@ namespace HitTheRoad.Chatbot
                 destinations = JsonConvert.DeserializeObject<List<Destination>>(await response.Content.ReadAsStringAsync());
             }
 
-            var reply = MessageFactory.Attachment(new List<Attachment>());
+            // var reply = MessageFactory.Attachment(new List<Attachment>());
+            var reply = MessageFactory.Carousel(new List<Attachment>());
 
             foreach (Destination d in destinations)
             {
                 HeroCard card = new HeroCard() {
                     Title = d.Name + " " + d.Flag,
-                    Images = new List<CardImage> { new CardImage(d.Photo)}
+                    Images = new List<CardImage>{new CardImage(d.Photo)}
                 };
 
                 reply.Attachments.Add(card.ToAttachment());
@@ -86,9 +87,9 @@ namespace HitTheRoad.Chatbot
             return reply;
         }
 
-        private async Task FindTrips()
-        {
-
-        }
+        // private async Task<IMessageActivity> FindTrips()
+        // {
+            
+        // }
     }
 }

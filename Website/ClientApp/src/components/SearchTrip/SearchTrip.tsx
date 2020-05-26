@@ -119,31 +119,10 @@ export class SearchTrip extends Component<{}, ISearchTripState>
                     <Row className="mt-4">
                         {
                             this.state.trip.map((trip, index) => {
-                                let destinationImage;
-
-                                switch (trip.destination.name)
-                                {
-                                    case "São Paulo":
-                                        destinationImage = "https://lonelyplanetimages.imgix.net/mastheads/72768175.jpg?sharp=10&vib=20&w=1200";
-                                        break;
-                                    case "Rio de Janeiro":
-                                        destinationImage = "http://ichef-1.bbci.co.uk/news/1024/media/images/69725000/jpg/_69725542_rio2.jpg";
-                                        break;
-                                    case "Londres":
-                                        destinationImage = "https://i.ytimg.com/vi/6iTBNNn8z4E/maxresdefault.jpg";
-                                        break;
-                                    case "Estocolmo":
-                                        destinationImage = "https://i.ytimg.com/vi/3bX2dRwNdt0/maxresdefault.jpg";    
-                                        break;
-                                    case "Dublin":
-                                        destinationImage = "https://media.cntraveler.com/photos/5b2be69494553e5edba9851d/master/w_1200,c_limit/Dublin_GettyImages_688242264.jpg";
-                                        break;
-                                }
-
                                 return (
                                     <Col md="4" xs="12">
                                         <Card key={index}>
-                                            <CardImg top src={ destinationImage } alt={ trip.destination.name } />
+                                            <CardImg top src={ trip.destination.photo } alt={ trip.destination.name } />
                                             <CardBody>
                                                 <CardTitle><h5>{ trip.name }</h5></CardTitle>
                                                 <CardSubtitle><h6>{"R$ " + trip.price.toFixed(2) }</h6></CardSubtitle>

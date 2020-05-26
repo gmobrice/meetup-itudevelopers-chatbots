@@ -4,7 +4,8 @@ export interface IDestination
     name: string,
     flag: string,
     latitude: number,
-    longitude: number
+    longitude: number,
+    photo: string
 }
 
 export interface ITrip

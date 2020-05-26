@@ -24,11 +24,11 @@ namespace HitTheRoad.Chatbot
                     return responseJson["prediction"]["topIntent"].Value<String>();
                 }
                 else
-                    return "deu ruim";
+                    return "Error";
             }
             else
             {
-                return "deu ruim";
+                return "Error";
             }
         }
     }
