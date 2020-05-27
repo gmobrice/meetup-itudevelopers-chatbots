@@ -44,6 +44,11 @@ namespace HitTheRoad.Api
                 app.UseDeveloperExceptionPage();
             }
 
+            using (var context = new Context(new DbContextOptions<Context>()))
+            {
+                context.Database.Migrate();
+            }
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
