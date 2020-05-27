@@ -15,7 +15,7 @@ export class Layout extends Component<{}, {}> {
                 </Container>
                 <div className="chatbot">
                     <div className="title py-2 px-3">Converse com nosso chatbot!</div>
-                    <iframe src='https://webchat.botframework.com/embed/hittheroad-chatbot?s=Ubod1S21tn4.CzdOG9JJguseN6lhWvzn9KQVcnvvoJYi7mt58RoBpB0'></iframe>
+                    <iframe title="chatbot" src='https://webchat.botframework.com/embed/hittheroad-chatbot?s=Ubod1S21tn4.CzdOG9JJguseN6lhWvzn9KQVcnvvoJYi7mt58RoBpB0'></iframe>
                 </div>
             </div>
         );
