@@ -26,7 +26,7 @@ namespace HitTheRoad.Website.Controllers
         {
             HttpClient client = httpClientFactory.CreateClient();
 
-            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, string.Concat(configuration["Endpoint:Api"], "destinations"));
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, string.Concat(configuration["Endpoints:Api"], "destinations"));
             HttpResponseMessage response = await client.SendAsync(request);
 
             if (response.IsSuccessStatusCode)
@@ -44,7 +44,7 @@ namespace HitTheRoad.Website.Controllers
         {
             HttpClient client = httpClientFactory.CreateClient();
 
-            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, string.Concat(configuration["Endpoint:Api"], "trips/origin/", originId, "/destination/", destinationId));
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, string.Concat(configuration["Endpoints:Api"], "trips/origin/", originId, "/destination/", destinationId));
             HttpResponseMessage response = await client.SendAsync(request);
 
             if (response.IsSuccessStatusCode)

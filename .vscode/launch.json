@@ -10,9 +10,9 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/Chatbot/bin/Debug/netcoreapp3.1/HitTheRoad.Chatbot.dll",
+            "program": "${workspaceFolder}/Website/bin/Debug/netcoreapp3.1/HitTheRoad.Website.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/Chatbot",
+            "cwd": "${workspaceFolder}/Website",
             "stopAtEntry": false,
             // Enable launching a web browser when ASP.NET Core starts. For more information: https://aka.ms/VSCode-CS-LaunchJson-WebBrowser
             "serverReadyAction": {
