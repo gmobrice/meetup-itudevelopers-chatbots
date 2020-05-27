@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using HitTheRoad.Classes;
 using System.Net.Http;
+using Microsoft.Extensions.Configuration;
 
 namespace HitTheRoad.Website.Controllers
 {
@@ -14,10 +13,12 @@ namespace HitTheRoad.Website.Controllers
     public class ApiController : ControllerBase
     {
         private readonly IHttpClientFactory httpClientFactory;
+        private readonly IConfiguration configuration;
 
-        public ApiController(IHttpClientFactory httpClientFactory)
+        public ApiController(IHttpClientFactory httpClientFactory, IConfiguration configuration)
         {
             this.httpClientFactory = httpClientFactory;
+            this.configuration = configuration;
         }
 
         [HttpGet("getDestinations")]
@@ -25,7 +26,7 @@ namespace HitTheRoad.Website.Controllers
         {
             HttpClient client = httpClientFactory.CreateClient();
 
-            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, "https://localhost:5003/destinations");
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, string.Concat(configuration["Endpoint:Api"], "destinations"));
             HttpResponseMessage response = await client.SendAsync(request);
 
             if (response.IsSuccessStatusCode)
@@ -43,7 +44,7 @@ namespace HitTheRoad.Website.Controllers
         {
             HttpClient client = httpClientFactory.CreateClient();
 
-            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, $"https://localhost:5003/trips/origin/{originId}/destination/{destinationId}");
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, string.Concat(configuration["Endpoint:Api"], "trips/origin/", originId, "/destination/", destinationId));
             HttpResponseMessage response = await client.SendAsync(request);
 
             if (response.IsSuccessStatusCode)
