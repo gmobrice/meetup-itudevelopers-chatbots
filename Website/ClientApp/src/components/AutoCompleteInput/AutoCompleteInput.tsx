@@ -109,7 +109,7 @@ export class AutoCompleteInput extends Component<IAutoCompleteProps, IAutoComple
                                         className = "active"
 
                                     return (
-                                        <li key={index}><a href="#" className={className} onClick={ this.selectSuggestion }>{ suggestion }</a></li>                                    
+                                        <li key={index}><a href="/" className={className} onClick={ this.selectSuggestion }>{ suggestion }</a></li>                                    
                                     )
                                 })
                             }

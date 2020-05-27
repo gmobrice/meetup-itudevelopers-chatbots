@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Input, Button, Label, Container, Card, CardImg, CardBody, CardTitle, CardText, CardSubtitle, Row, Col } from 'reactstrap';
+import { Input, Button, Label, Container, Card, CardImg, CardBody, CardTitle, CardSubtitle, Row, Col } from 'reactstrap';
 import { AutoCompleteInput } from '../AutoCompleteInput/AutoCompleteInput';
 import { ISearchTripState, IDestination, ITrip } from '../../interfaces/Interfaces';
 import './SearchTrip.scss';
@@ -55,7 +55,7 @@ export class SearchTrip extends Component<{}, ISearchTripState>
 
         if (endDate >= startDate)
         {
-            if (this.state.destination != this.state.origin)
+            if (this.state.destination !== this.state.origin)
             {
                 let origin = this.state.destinations.find(d => d.name === this.state.origin);
                 let destination = this.state.destinations.find(d => d.name === this.state.destination);
