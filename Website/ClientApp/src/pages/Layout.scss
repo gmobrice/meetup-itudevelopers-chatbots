@@ -1,15 +1,36 @@
 @import url('https://fonts.googleapis.com/css2?family=Jost&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import '../styles/colors.scss';
 
 body
 {
-    background: url('./images/header-bg01.jpg') no-repeat;
+    background: url('../images/header-bg01.jpg') no-repeat;
     background-size: 100%;
     background-attachment: fixed;
     font-family: 'Jost';
 
     @media screen and (max-aspect-ratio:3/2) {
         background: white;
+    }
+}
+
+.chatbot
+{
+    bottom: 0px;
+    position: fixed;
+    right: 10px;
+    
+    .title
+    {
+        background: $primary-color;
+        color: white;
+        width: 100%;
+    }
+
+    iframe
+    {
+        height: 400px;
+        width: 400px;
     }
 }
 

@@ -3,8 +3,6 @@ import { Route } from 'react-router';
 import { Layout } from './pages/Layout';
 import { Home } from './pages/Home';
 
-import './App.scss';
-
 export default class App extends Component<any, any> {
 
   render () {

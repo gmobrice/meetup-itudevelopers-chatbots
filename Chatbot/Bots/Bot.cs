@@ -3,7 +3,6 @@
 //
 // Generated with EchoBot .NET Template version v4.9.1
 
-using AdaptiveCards;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading;
@@ -30,19 +29,6 @@ namespace HitTheRoad.Chatbot
             destinations = new List<Destination>();
         }
 
-        protected override async Task OnMembersAddedAsync(IList<ChannelAccount> membersAdded, ITurnContext<IConversationUpdateActivity> turnContext, CancellationToken cancellationToken)
-        {
-            var welcomeText = "Bem vindo ao bot da Hit The Road!\n\n Me pergunte algo, como, por exemplo: \"*Quais são os destinos que trabalhamos*\" ou \"*Gostaria de viajar de São Paulo para Londres*\"";
-
-            foreach (var member in membersAdded)
-            {
-                if (member.Id != turnContext.Activity.Recipient.Id)
-                {
-                    await turnContext.SendActivityAsync(MessageFactory.Text(welcomeText, welcomeText), cancellationToken);
-                }
-            }
-        }
-
         protected override async Task OnMessageActivityAsync(ITurnContext<IMessageActivity> turnContext, CancellationToken cancellationToken)
         {
             string prediction = await Helpers.getLuisPrediction(httpClientFactory.CreateClient(), turnContext.Activity.Text);
@@ -65,6 +51,9 @@ namespace HitTheRoad.Chatbot
                 case "findTrip":
                     reply = await FindTrips(entities);
                     break;
+                case "greetings":
+                    reply = MessageFactory.Text("Olá!\n\nSeja bem vindo ao bot da Hit The Road!\n\n Me pergunte algo, como, por exemplo: \"*Quais são os destinos que trabalhamos*\" ou \"*Gostaria de viajar de São Paulo para Londres*\"");
+                    break;
                 default:
                     reply = MessageFactory.Text("Não consegui entender! Pode repetir de outra forma?");
                     break;
@@ -80,7 +69,9 @@ namespace HitTheRoad.Chatbot
             HttpResponseMessage response = await client.SendAsync(request);
 
             if (response.IsSuccessStatusCode)
+            {
                 destinations = JsonConvert.DeserializeObject<List<Destination>>(await response.Content.ReadAsStringAsync());
+            }
         }
 
         private async Task<IMessageActivity> FindDestinations()
@@ -123,7 +114,9 @@ namespace HitTheRoad.Chatbot
             HttpResponseMessage response = await client.SendAsync(request);
 
             if (response.IsSuccessStatusCode)
+            {
                 trips = JsonConvert.DeserializeObject<List<Trip>>(await response.Content.ReadAsStringAsync());
+            }
 
             foreach (Trip trip in trips)
             {
