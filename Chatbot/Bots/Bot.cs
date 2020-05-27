@@ -12,21 +12,28 @@ using Microsoft.Bot.Builder;
 using Microsoft.Bot.Schema;
 using Newtonsoft.Json;
 using HitTheRoad.Classes;
+using System.Linq;
+using Microsoft.Extensions.Configuration;
 
 namespace HitTheRoad.Chatbot
 {
     public class Bot : ActivityHandler
     {
         private readonly IHttpClientFactory httpClientFactory;
+        private readonly IConfiguration configuration;
+        private List<Destination> destinations;
 
-        public Bot(IHttpClientFactory httpClientFactory)
+        public Bot(IHttpClientFactory httpClientFactory, IConfiguration configuration)
         {
             this.httpClientFactory = httpClientFactory;
+            this.configuration = configuration;
+            destinations = new List<Destination>();
         }
 
         protected override async Task OnMembersAddedAsync(IList<ChannelAccount> membersAdded, ITurnContext<IConversationUpdateActivity> turnContext, CancellationToken cancellationToken)
         {
             var welcomeText = "Bem vindo ao bot da Hit The Road!\n\n Me pergunte algo, como, por exemplo: \"*Quais são os destinos que trabalhamos*\" ou \"*Gostaria de viajar de São Paulo para Londres*\"";
+
             foreach (var member in membersAdded)
             {
                 if (member.Id != turnContext.Activity.Recipient.Id)
@@ -38,17 +45,26 @@ namespace HitTheRoad.Chatbot
 
         protected override async Task OnMessageActivityAsync(ITurnContext<IMessageActivity> turnContext, CancellationToken cancellationToken)
         {
-            string topIntent = await Helpers.getTopIntent(httpClientFactory.CreateClient(), turnContext.Activity.Text);
+            string prediction = await Helpers.getLuisPrediction(httpClientFactory.CreateClient(), turnContext.Activity.Text);
+            string topIntent = string.Empty;
+            Dictionary<string, string> entities = new Dictionary<string, string>();
+
             IMessageActivity reply;
+
+            if (prediction != "Error")
+            {
+                topIntent = Helpers.getTopIntent(prediction);
+                entities = Helpers.getDestinations(prediction);
+            }
 
             switch (topIntent)
             {
                 case "findDestinations":
                     reply = await FindDestinations();
                     break;
-                // case "findTrips":
-                //     FindTrips();
-                //     break;
+                case "findTrip":
+                    reply = await FindTrips(entities);
+                    break;
                 default:
                     reply = MessageFactory.Text("Não consegui entender! Pode repetir de outra forma?");
                     break;
@@ -57,21 +73,23 @@ namespace HitTheRoad.Chatbot
             await turnContext.SendActivityAsync(reply, cancellationToken);
         }
 
-        private async Task<IMessageActivity> FindDestinations()
+        private async Task GetDestinations()
         {
-            List<Destination> destinations = new List<Destination>();
-
             HttpClient client = httpClientFactory.CreateClient();
-            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, "https://localhost:5003/destinations/");
-
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, string.Concat(configuration["Endpoints:Api"], "destinations/"));
             HttpResponseMessage response = await client.SendAsync(request);
 
             if (response.IsSuccessStatusCode)
-            {
                 destinations = JsonConvert.DeserializeObject<List<Destination>>(await response.Content.ReadAsStringAsync());
+        }
+
+        private async Task<IMessageActivity> FindDestinations()
+        {
+            if (destinations.Count == 0)
+            {
+                await GetDestinations();
             }
 
-            // var reply = MessageFactory.Attachment(new List<Attachment>());
             var reply = MessageFactory.Carousel(new List<Attachment>());
 
             foreach (Destination d in destinations)
@@ -87,9 +105,39 @@ namespace HitTheRoad.Chatbot
             return reply;
         }
 
-        // private async Task<IMessageActivity> FindTrips()
-        // {
+        private async Task<IMessageActivity> FindTrips(Dictionary<string, string> entities)
+        {
+            var reply = MessageFactory.Attachment(new List<Attachment>());
+            List<Trip> trips = new List<Trip>();
             
-        // }
+            if (destinations.Count == 0)
+            {
+                await GetDestinations();
+            }
+
+            Destination origin = destinations.Where(d => d.Name.ToLower() == entities.First().Key.ToLower()).FirstOrDefault();
+            Destination destination = destinations.Where(d => d.Name.ToLower() == entities.Last().Key.ToLower()).FirstOrDefault();
+
+            HttpClient client = httpClientFactory.CreateClient();
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, string.Concat(configuration["Endpoints:Api"], "trips/origin/", origin.Id, "/destination/", destination.Id));
+            HttpResponseMessage response = await client.SendAsync(request);
+
+            if (response.IsSuccessStatusCode)
+                trips = JsonConvert.DeserializeObject<List<Trip>>(await response.Content.ReadAsStringAsync());
+
+            foreach (Trip trip in trips)
+            {
+                HeroCard card = new HeroCard() {
+                    Title = string.Concat(trip.Origin.Name, " ➡️ ", trip.Destination.Name),
+                    Text = string.Concat("R$ ", string.Format("{0:0.##}",trip.Price)),
+                    Images = new List<CardImage>{new CardImage(trip.Destination.Photo)},
+                    Buttons = new List<CardAction>{new CardAction(ActionTypes.OpenUrl, "Comprar passagens", value: "https://skyscanner.com.br/")}
+                };
+
+                reply.Attachments.Add(card.ToAttachment());
+            }
+
+            return reply;
+        }
     }
 }

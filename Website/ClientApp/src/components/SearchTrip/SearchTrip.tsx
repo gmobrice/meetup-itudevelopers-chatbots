@@ -112,7 +112,7 @@ export class SearchTrip extends Component<{}, ISearchTripState>
         {
             results = (
                 <div>
-                    <h1>Results</h1>
+                    <h1>Resultado da pesquisa</h1>
                     <h2><span className="text-secondary">Viagens de </span> { this.state.trip[0].origin.name } <span className="text-secondary">para</span> { this.state.trip[0].destination.name } </h2>
                     <h4><span className="text-secondary">entre</span> { startDate.toLocaleDateString('pt-br') } <span className="text-secondary">e</span> { endDate.toLocaleDateString('pt-br') } </h4>
                     

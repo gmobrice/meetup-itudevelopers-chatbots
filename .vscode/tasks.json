@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/Api/HitTheRoad.Api.csproj",
+                "${workspaceFolder}/Chatbot/HitTheRoad.Chatbot.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -19,7 +19,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/Api/HitTheRoad.Api.csproj",
+                "${workspaceFolder}/Chatbot/HitTheRoad.Chatbot.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -32,7 +32,7 @@
             "args": [
                 "watch",
                 "run",
-                "${workspaceFolder}/Api/HitTheRoad.Api.csproj",
+                "${workspaceFolder}/Chatbot/HitTheRoad.Chatbot.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
