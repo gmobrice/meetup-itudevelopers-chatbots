@@ -19,9 +19,6 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: '3.1.102'
-  
-    - name: npm install
-      run: cd Website/ClientApp && npm i
 
     - name: Build with dotnet
       run: cd Website && dotnet build --configuration Release
