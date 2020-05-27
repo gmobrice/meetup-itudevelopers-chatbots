@@ -120,8 +120,8 @@ export class SearchTrip extends Component<{}, ISearchTripState>
                         {
                             this.state.trip.map((trip, index) => {
                                 return (
-                                    <Col md="4" xs="12">
-                                        <Card key={index}>
+                                    <Col md="4" xs="12" key={index}>
+                                        <Card>
                                             <CardImg top src={ trip.destination.photo } alt={ trip.destination.name } />
                                             <CardBody>
                                                 <CardTitle><h5>{ trip.name }</h5></CardTitle>
