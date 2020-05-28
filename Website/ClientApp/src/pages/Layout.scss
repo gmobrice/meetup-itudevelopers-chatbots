@@ -16,6 +16,10 @@ body
 
 .chatbot
 {
+    @media screen and (max-width: 767px) {
+        display: none;
+    }
+
     bottom: 0px;
     position: fixed;
     right: 10px;

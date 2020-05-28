@@ -1,0 +1,53 @@
+{
+  "query": "gostaria de viajar de sao paulo a londres",
+  "prediction": {
+    "topIntent": "findTrip",
+    "intents": {
+      "findTrip": {
+        "score": 0.9744766
+      },
+      "findDestinations": {
+        "score": 0.0297840852
+      },
+      "None": {
+        "score": 0.00691774627
+      }
+    },
+    "entities": {
+      "destination": [
+        [
+          "São Paulo"
+        ],
+        [
+          "Londres"
+        ]
+      ],
+      "$instance": {
+        "destination": [
+          {
+            "type": "destination",
+            "text": "sao paulo",
+            "startIndex": 22,
+            "length": 9,
+            "modelTypeId": 5,
+            "modelType": "List Entity Extractor",
+            "recognitionSources": [
+              "model"
+            ]
+          },
+          {
+            "type": "destination",
+            "text": "londres",
+            "startIndex": 34,
+            "length": 7,
+            "modelTypeId": 5,
+            "modelType": "List Entity Extractor",
+            "recognitionSources": [
+              "model"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

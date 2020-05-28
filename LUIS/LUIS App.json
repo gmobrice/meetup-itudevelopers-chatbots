@@ -1,0 +1,232 @@
+{
+  "luis_schema_version": "7.0.0",
+  "intents": [
+    {
+      "name": "findDestinations",
+      "features": []
+    },
+    {
+      "name": "findTrip",
+      "features": []
+    },
+    {
+      "name": "greetings",
+      "features": []
+    },
+    {
+      "name": "None",
+      "features": []
+    }
+  ],
+  "entities": [],
+  "hierarchicals": [],
+  "composites": [],
+  "closedLists": [
+    {
+      "name": "destination",
+      "subLists": [
+        {
+          "canonicalForm": "São Paulo",
+          "list": [
+            "SP",
+            "Sao Paulo",
+            "Sampa"
+          ]
+        },
+        {
+          "canonicalForm": "Rio de Janeiro",
+          "list": [
+            "Rio",
+            "RJ",
+            "Riodejaneiro"
+          ]
+        },
+        {
+          "canonicalForm": "Estocolmo",
+          "list": [
+            "SWE",
+            "Stockholm",
+            "Suécia",
+            "Sweden"
+          ]
+        },
+        {
+          "canonicalForm": "Dublin",
+          "list": [
+            "IRL",
+            "Irlanda",
+            "Ireland"
+          ]
+        },
+        {
+          "canonicalForm": "Londres",
+          "list": [
+            "ING",
+            "Inglaterra",
+            "London"
+          ]
+        }
+      ],
+      "roles": []
+    }
+  ],
+  "prebuiltEntities": [],
+  "utterances": [
+    {
+      "text": "boa noite",
+      "intent": "greetings",
+      "entities": []
+    },
+    {
+      "text": "boa tarde",
+      "intent": "greetings",
+      "entities": []
+    },
+    {
+      "text": "bom dia",
+      "intent": "greetings",
+      "entities": []
+    },
+    {
+      "text": "e ai",
+      "intent": "greetings",
+      "entities": []
+    },
+    {
+      "text": "gostaria de conhecer estocolmo",
+      "intent": "findTrip",
+      "entities": []
+    },
+    {
+      "text": "gostaria de ir de londres a estocolmo",
+      "intent": "findTrip",
+      "entities": []
+    },
+    {
+      "text": "gostaria de ir de sao paulo ao rio de janeiro",
+      "intent": "findTrip",
+      "entities": []
+    },
+    {
+      "text": "gostaria de ir para londres",
+      "intent": "findTrip",
+      "entities": []
+    },
+    {
+      "text": "gostaria de viajar de sao paulo a londres",
+      "intent": "findTrip",
+      "entities": []
+    },
+    {
+      "text": "gostaria de viajar entre são paulo e londres",
+      "intent": "findTrip",
+      "entities": []
+    },
+    {
+      "text": "me mostra onde posso ir",
+      "intent": "findDestinations",
+      "entities": []
+    },
+    {
+      "text": "oi",
+      "intent": "greetings",
+      "entities": []
+    },
+    {
+      "text": "olá",
+      "intent": "greetings",
+      "entities": []
+    },
+    {
+      "text": "para onde posso ir?",
+      "intent": "findDestinations",
+      "entities": []
+    },
+    {
+      "text": "para onde posso viajar",
+      "intent": "findDestinations",
+      "entities": []
+    },
+    {
+      "text": "para onde posso viajar?",
+      "intent": "findDestinations",
+      "entities": []
+    },
+    {
+      "text": "para quais destinos eu posso viajar?",
+      "intent": "findDestinations",
+      "entities": []
+    },
+    {
+      "text": "quais lugares vocês trabalham?",
+      "intent": "findDestinations",
+      "entities": []
+    },
+    {
+      "text": "quais são os destinos disponíveis?",
+      "intent": "findDestinations",
+      "entities": []
+    },
+    {
+      "text": "quais são os destinos?",
+      "intent": "findDestinations",
+      "entities": []
+    },
+    {
+      "text": "quais sao os itinerarios?",
+      "intent": "findDestinations",
+      "entities": []
+    },
+    {
+      "text": "quanto custa para ir de sao paulo a londres",
+      "intent": "findTrip",
+      "entities": []
+    },
+    {
+      "text": "quero agendar uma viagem",
+      "intent": "findDestinations",
+      "entities": []
+    },
+    {
+      "text": "quero ver viagens entre sao paulo e londres",
+      "intent": "findTrip",
+      "entities": []
+    },
+    {
+      "text": "salve",
+      "intent": "greetings",
+      "entities": []
+    },
+    {
+      "text": "são paulo",
+      "intent": "findDestinations",
+      "entities": []
+    },
+    {
+      "text": "teste",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "teste 123",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "tudo bem?",
+      "intent": "greetings",
+      "entities": []
+    }
+  ],
+  "versionId": "0.1",
+  "name": "Agência de Viagens",
+  "desc": "",
+  "culture": "pt-br",
+  "tokenizerVersion": "1.0.0",
+  "patternAnyEntities": [],
+  "regex_entities": [],
+  "phraselists": [],
+  "regex_features": [],
+  "patterns": [],
+  "settings": []
+}
