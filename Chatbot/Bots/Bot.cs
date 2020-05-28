@@ -32,24 +32,21 @@ namespace HitTheRoad.Chatbot
         protected override async Task OnMessageActivityAsync(ITurnContext<IMessageActivity> turnContext, CancellationToken cancellationToken)
         {
             string prediction = await Helpers.getLuisPrediction(httpClientFactory.CreateClient(), turnContext.Activity.Text);
-            string topIntent = string.Empty;
-            Dictionary<string, string> entities = new Dictionary<string, string>();
-
+            LuisModel predictionModel = new LuisModel();
             IMessageActivity reply;
 
             if (prediction != "Error")
             {
-                topIntent = Helpers.getTopIntent(prediction);
-                entities = Helpers.getDestinations(prediction);
+                predictionModel = JsonConvert.DeserializeObject<LuisModel>(prediction);
             }
 
-            switch (topIntent)
+            switch (predictionModel.Prediction.TopIntent)
             {
                 case "findDestinations":
                     reply = await FindDestinations();
                     break;
                 case "findTrip":
-                    reply = await FindTrips(entities);
+                    reply = await FindTrips(predictionModel.Prediction.Entities.Destinations);
                     break;
                 case "greetings":
                     reply = MessageFactory.Text("Olá!\n\nSeja bem vindo ao bot da Hit The Road!\n\n Me pergunte algo, como, por exemplo: \"*Quais são os destinos que trabalhamos*\" ou \"*Gostaria de viajar de São Paulo para Londres*\"");
@@ -92,11 +89,10 @@ namespace HitTheRoad.Chatbot
 
                 reply.Attachments.Add(card.ToAttachment());
             }
-
             return reply;
         }
 
-        private async Task<IMessageActivity> FindTrips(Dictionary<string, string> entities)
+        private async Task<IMessageActivity> FindTrips(string[][] entities)
         {
             var reply = MessageFactory.Attachment(new List<Attachment>());
             List<Trip> trips = new List<Trip>();
@@ -106,8 +102,8 @@ namespace HitTheRoad.Chatbot
                 await GetDestinations();
             }
 
-            Destination origin = destinations.Where(d => d.Name.ToLower() == entities.First().Key.ToLower()).FirstOrDefault();
-            Destination destination = destinations.Where(d => d.Name.ToLower() == entities.Last().Key.ToLower()).FirstOrDefault();
+            Destination origin = destinations.Where(d => d.Name.ToLower() == entities.First().First().ToLower()).FirstOrDefault();
+            Destination destination = destinations.Where(d => d.Name.ToLower() == entities.Last().First().ToLower()).FirstOrDefault();
 
             HttpClient client = httpClientFactory.CreateClient();
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, string.Concat(configuration["Endpoints:Api"], "trips/origin/", origin.Id, "/destination/", destination.Id));

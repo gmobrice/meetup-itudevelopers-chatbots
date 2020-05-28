@@ -1,9 +1,5 @@
-using System;
-using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace HitTheRoad.Chatbot
 {
@@ -31,43 +27,6 @@ namespace HitTheRoad.Chatbot
             {
                 return "Error";
             }
-        }
-
-        public static string getTopIntent(string prediction)
-        {
-            JObject predictionJson = JObject.Parse(prediction);
-                
-            if (predictionJson.ContainsKey("prediction"))
-            {
-                return predictionJson["prediction"]["topIntent"].Value<String>();
-            }
-            else
-            {
-                return "Error";
-            }
-        }
-
-        public static Dictionary<string, string> getDestinations(string prediction)
-        {
-            Dictionary<string, string> ret = new Dictionary<string, string>();
-
-            JObject predictionJson = JObject.Parse(prediction);
-
-            if (predictionJson.ContainsKey("prediction"))
-            {
-                JObject entities = (JObject) predictionJson["prediction"]["entities"];
-
-                if (entities.Count > 0)
-                {
-                    string entityType = ((JProperty) entities.First).Name;
-                    foreach (JArray ent in entities[entityType])
-                    {
-                        ret.Add(ent[0].Value<string>(), entityType);
-                    }
-                }
-            }
-
-            return ret;
         }
     }
 }
