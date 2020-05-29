@@ -1,5 +1,9 @@
 # Transformando seu website em chatbot - Meetup Itu Developers 30/05/2020
 
+![Build and deploy ASP.Net Core app to Azure Web App - hittheroad-chatbot](https://github.com/gmobrice/meetup-itudevelopers-chatbots/workflows/Build%20and%20deploy%20ASP.Net%20Core%20app%20to%20Azure%20Web%20App%20-%20hittheroad-chatbot/badge.svg)
+
+![Build and deploy ASP.Net Core app to Azure Web App - hittheroad-website](https://github.com/gmobrice/meetup-itudevelopers-chatbots/workflows/Build%20and%20deploy%20ASP.Net%20Core%20app%20to%20Azure%20Web%20App%20-%20hittheroad-website/badge.svg)
+
 Olá! Esse repositório serve para compartilhar todos os arquivos que utilizei nas demos e apresentação de minha palestra no 6º Meetup Itu Developers, que ocorreu no dia 30/05/2020.
 
 Explicarei brevemente cada um dos projetos para que, quem quiser, possa clonar e executar ou até mesmo construir um projeto semelhante do zero.
@@ -56,6 +60,8 @@ Você pode testar o chatbot, conectando o endereço onde o projeto está rodando
 **Atenção:** não se esqueça de manter a API rodando para que o projeto funcione.
 
 ### Website
+
+*Você pode testar o projeto online aqui: https://hittheroad-website.azurewebsites.net/*
 
 O Website foi construído utilizando o template de ASP.NET MVC + React `dotnet new react`.
 
