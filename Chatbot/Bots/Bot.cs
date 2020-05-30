@@ -102,28 +102,35 @@ namespace HitTheRoad.Chatbot
                 await GetDestinations();
             }
 
-            Destination origin = destinations.Where(d => d.Name.ToLower() == entities.First().First().ToLower()).FirstOrDefault();
-            Destination destination = destinations.Where(d => d.Name.ToLower() == entities.Last().First().ToLower()).FirstOrDefault();
-
-            HttpClient client = httpClientFactory.CreateClient();
-            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, string.Concat(configuration["Endpoints:Api"], "trips/origin/", origin.Id, "/destination/", destination.Id));
-            HttpResponseMessage response = await client.SendAsync(request);
-
-            if (response.IsSuccessStatusCode)
+            if (entities.Count() >= 2)
             {
-                trips = JsonConvert.DeserializeObject<List<Trip>>(await response.Content.ReadAsStringAsync());
+                Destination origin = destinations.Where(d => d.Name.ToLower() == entities.First().First().ToLower()).FirstOrDefault();
+                Destination destination = destinations.Where(d => d.Name.ToLower() == entities.Last().First().ToLower()).FirstOrDefault();
+
+                HttpClient client = httpClientFactory.CreateClient();
+                HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, string.Concat(configuration["Endpoints:Api"], "trips/origin/", origin.Id, "/destination/", destination.Id));
+                HttpResponseMessage response = await client.SendAsync(request);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    trips = JsonConvert.DeserializeObject<List<Trip>>(await response.Content.ReadAsStringAsync());
+                }
+
+                foreach (Trip trip in trips)
+                {
+                    HeroCard card = new HeroCard() {
+                        Title = string.Concat(trip.Origin.Name, " ➡️ ", trip.Destination.Name),
+                        Text = string.Concat("R$ ", string.Format("{0:0.##}",trip.Price)),
+                        Images = new List<CardImage>{new CardImage(trip.Destination.Photo)},
+                        Buttons = new List<CardAction>{new CardAction(ActionTypes.OpenUrl, "Comprar passagens", value: "https://skyscanner.com.br/")}
+                    };
+
+                    reply.Attachments.Add(card.ToAttachment());
+                }
             }
-
-            foreach (Trip trip in trips)
+            else
             {
-                HeroCard card = new HeroCard() {
-                    Title = string.Concat(trip.Origin.Name, " ➡️ ", trip.Destination.Name),
-                    Text = string.Concat("R$ ", string.Format("{0:0.##}",trip.Price)),
-                    Images = new List<CardImage>{new CardImage(trip.Destination.Photo)},
-                    Buttons = new List<CardAction>{new CardAction(ActionTypes.OpenUrl, "Comprar passagens", value: "https://skyscanner.com.br/")}
-                };
-
-                reply.Attachments.Add(card.ToAttachment());
+                reply = MessageFactory.Text("Por favor, me diga um local de origem e um de destino!");
             }
 
             return reply;

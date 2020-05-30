@@ -25,6 +25,7 @@ namespace HitTheRoad.Classes
     }
 
     // Paste JSON as Classes
+    
     public class LuisModel
     {
         [JsonProperty("query")]
